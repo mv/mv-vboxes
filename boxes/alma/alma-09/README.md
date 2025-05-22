@@ -1,16 +1,22 @@
 
 
 
-## Steps
+# Steps
 
-### Source
+## Provision using Source
 
 ```
 vagrant up  source
 vagrant ssh source
 ```
 
-Inside `source`
+### Get ISO.
+Download and mount `VBoxGuestAdditions.iso` to `source` using VirtualBox GUI.
+
+TODO: use CLI `VboxManage` to attach iso.
+
+
+### Inside `source`
 
 ```
 sudo su -
@@ -36,14 +42,24 @@ dnf history undo 2   # clean
 ./set.fs-swap-file.sh  # optional
 ```
 
-### Update/New machine
+### Outside `source`
+
+Create an updated box.
+
+```
+vagrant package source
+```
+
+
+## Test `updated` machine
+
 
 ```
 vagrant up  update
 vagrant ssh update
 ```
 
-Inside `update`
+### Inside `update`
 
 ```
 ll
@@ -51,7 +67,7 @@ cat /etc/vimrc
 htop
 ```
 
-### Add new box
+## Add new box
 
 ```
 vagrant box list
